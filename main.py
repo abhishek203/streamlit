@@ -31,6 +31,16 @@ def generate_response(query):
     new_message = run_assistant(thread)
 
     return new_message
+def display_messages_nicely(data):
+    for message in data:
+        # Accessing the content list
+        for content_block in message.content:
+            # Checking if the content block is of type 'text'
+            if content_block.type == 'text':
+                # Printing the 'value' of the text content block
+                return (content_block.text.value)
+
+# Assuming 'data' is your list of Message objects
 
 def main():
     st.title('GPT for oscilloscope code')
@@ -42,9 +52,9 @@ def main():
     if st.button('Process'):
         # Use the imported function
         result = generate_response(user_input)
-        
+        res = display_messages_nicely(result)
         # Display the result
-        st.write('Processed Data:', result)
+        st.write('Processed Data:', res)
 
 def test():
      generate_response('give python code to extract channel 1 data for 10 sec')
