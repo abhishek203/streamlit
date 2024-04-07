@@ -14,9 +14,9 @@ def run_assistant(thread):
         messages = client.beta.threads.messages.list(
           thread_id=thread.id
         )
-        print(messages)
+        return messages
       else:
-        print(run.status)
+        return run.status
 
 def generate_response(query):
     thread = client.beta.threads.create()
